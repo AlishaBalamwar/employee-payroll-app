@@ -29,4 +29,10 @@ public class EmployeePayrollController {
         return employeePayrollService.deleteEmployee(id);
     }
 
+    @PutMapping("/employee/{id}")
+    public String updateEmployee(@PathVariable(value = "id") int id,
+                                 @Valid @RequestBody EmployeeDto employeeDto){
+        return employeePayrollService.updateEmployee(id, employeeDto);
+    }
+
 }

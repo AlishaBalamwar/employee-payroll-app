@@ -14,9 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class EmployeePayrollService {
-    private static final String  EMPLOYEE_ADDED_SUCCESSFULLY = "Employee added successfully";
+    private static final String EMPLOYEE_ADDED_SUCCESSFULLY = "Employee added successfully";
     private static final String INVALID_ID = "Invalid Id";
     private static final String EMPLOYEE_DELETED_SUCCESSFULLY = "Employee details deleted successfully";
+    private static final String EMPLOYEE_UPDATED_SUCCESSFULLY = "Employee Details updated successfully";
     @Autowired
     private EmployeeRepo employeeRepo;
     @Autowired
@@ -42,9 +43,16 @@ public class EmployeePayrollService {
         return employeeRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException(INVALID_ID));
     }
 
-    public String deleteEmployee(int id) {
+    public String deleteEmployee(int id) throws ResourceNotFoundException {
         EmployeePayroll employeePayroll = findAtmEntityById(id);
         employeeRepo.delete(employeePayroll);
         return EMPLOYEE_DELETED_SUCCESSFULLY;
+    }
+
+    public String updateEmployee(int id, EmployeeDto employeeDto) throws ResourceNotFoundException {
+        EmployeePayroll employeePayroll = findAtmEntityById(id);
+        employeePayroll = employeeBuilder.buildAtmEntity(employeeDto, employeePayroll);
+        employeeRepo.save(employeePayroll);
+        return EMPLOYEE_UPDATED_SUCCESSFULLY;
     }
 }

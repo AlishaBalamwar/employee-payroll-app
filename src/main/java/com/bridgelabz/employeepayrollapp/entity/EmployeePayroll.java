@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -20,5 +21,5 @@ public class EmployeePayroll {
     private String employeeName;
     private long employeeSalary;
     @CreationTimestamp
-    private Date Start;
+    private LocalDateTime Start;
 }

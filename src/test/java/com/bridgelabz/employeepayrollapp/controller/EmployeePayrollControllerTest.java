@@ -41,4 +41,36 @@ public class EmployeePayrollControllerTest {
             assertEquals(employeeDtoList.get(i).getEmployeeSalary(), actualResponse.get(i).getEmployeeSalary());
         }
     }
+
+    @Test
+    void givenAEmployeeDetails_whenAddEmployeeDetailsCalled_shouldAddTheEmployee() {
+        String successString = "Employee added successfully";
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setEmployeeName("Alisha");
+        employeeDto.setEmployeeSalary(50000);
+        when(employeePayrollService.addEmployee(employeeDto)).thenReturn(successString);
+        String actualResponseString = employeePayrollController.addEmployee(employeeDto);
+        assertEquals(successString, actualResponseString);
+    }
+
+    @Test
+    void givenAEmployeeDetails_whenUpdateEmployeeDetailsCalled_shouldUpdateTheEmployee() {
+        String successString = "Employee Details updated successfully";
+        int employeeId = 1;
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setEmployeeName("Alisha");
+        employeeDto.setEmployeeSalary(50000);
+        when(employeePayrollService.updateEmployee(employeeId, employeeDto)).thenReturn(successString);
+        String actualResponseString = employeePayrollController.updateEmployee(employeeId,employeeDto);
+        assertEquals(successString, actualResponseString);
+    }
+
+    @Test
+    void givenAEmployeeId_whenDeleteEmployeeDetailsCalled_shouldDeleteTheEmployee() {
+        String successString = "Employee details deleted successfully";
+        int employeeId = 1;
+        when(employeePayrollService.deleteEmployee(employeeId)).thenReturn(successString);
+        String actualResponseString = employeePayrollController.deleteEmployee(employeeId);
+        assertEquals(successString, actualResponseString);
+    }
 }
