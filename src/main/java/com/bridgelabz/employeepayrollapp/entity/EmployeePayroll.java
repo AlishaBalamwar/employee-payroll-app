@@ -1,14 +1,17 @@
 package com.bridgelabz.employeepayrollapp.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
-@Data
 @Entity
+@Getter
+@Setter
+@Table(name = "employee")
 public class EmployeePayroll {
 
     @Id
@@ -16,4 +19,6 @@ public class EmployeePayroll {
     private int employeeId;
     private String employeeName;
     private long employeeSalary;
+    @CreationTimestamp
+    private Date Start;
 }
