@@ -51,7 +51,7 @@ public class EmployeePayrollService {
 
     public String updateEmployee(int id, EmployeeDto employeeDto) throws ResourceNotFoundException {
         EmployeePayroll employeePayroll = findAtmEntityById(id);
-        employeePayroll = employeeBuilder.buildAtmEntity(employeeDto, employeePayroll);
+        employeePayroll = employeeBuilder.buildEmployeeEntity(employeeDto, employeePayroll);
         employeeRepo.save(employeePayroll);
         return EMPLOYEE_UPDATED_SUCCESSFULLY;
     }

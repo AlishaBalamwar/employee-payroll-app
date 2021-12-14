@@ -12,7 +12,7 @@ public class EmployeeBuilder {
     @Autowired
     private ModelMapper modelMapper;
 
-    public EmployeePayroll buildAtmEntity(EmployeeDto employeeDto, EmployeePayroll employeePayroll) {
+    public EmployeePayroll buildEmployeeEntity(EmployeeDto employeeDto, EmployeePayroll employeePayroll) {
         modelMapper.map(employeeDto, employeePayroll);
         return employeePayroll;
     }
