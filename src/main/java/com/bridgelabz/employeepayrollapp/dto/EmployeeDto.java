@@ -5,7 +5,14 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
+/**
+ * Purpose: To invoke data from client
+ *
+ * @author : ALISHA BALAMWAR
+ * @since:2021-12-13
+ */
 @Data
 public class EmployeeDto {
     @NotNull
@@ -14,4 +21,8 @@ public class EmployeeDto {
     private String employeeName;
     @NotNull
     private long employeeSalary;
+    @NotNull
+    private String gender;
+    @NotNull
+    private List<String> departments;
 }

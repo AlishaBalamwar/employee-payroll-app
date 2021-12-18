@@ -41,12 +41,16 @@ public class EmployeePayrollServiceTest {
         employeePayroll1.setEmployeeId(1);
         employeePayroll1.setEmployeeName("Alisha");
         employeePayroll1.setEmployeeSalary(50000);
+        employeePayroll1.setDepartments(List.of("It"));
+        employeePayroll1.setGender("female");
         employeePayroll1.setStart(LocalDateTime.now());
         employeePayrollList.add(employeePayroll1);
         EmployeePayroll employeePayroll2 = new EmployeePayroll();
         employeePayroll2.setEmployeeId(2);
         employeePayroll2.setEmployeeName("Harry");
         employeePayroll2.setEmployeeSalary(80000);
+        employeePayroll2.setDepartments(List.of("Electrical"));
+        employeePayroll2.setGender("male");
         employeePayroll2.setStart(LocalDateTime.now());
         employeePayrollList.add(employeePayroll2);
 
@@ -54,10 +58,14 @@ public class EmployeePayrollServiceTest {
         EmployeeDto employeeDto1 = new EmployeeDto();
         employeeDto1.setEmployeeName("Alisha");
         employeeDto1.setEmployeeSalary(50000);
+        employeeDto1.setDepartments(List.of("It"));
+        employeeDto1.setGender("female");
         employeeDtoList.add(employeeDto1);
         EmployeeDto employeeDto2 = new EmployeeDto();
         employeeDto2.setEmployeeName("Harry");
         employeeDto2.setEmployeeSalary(80000);
+        employeeDto2.setDepartments(List.of("It"));
+        employeeDto2.setGender("male");
         employeeDtoList.add(employeeDto2);
 
         when(employeeRepo.findAll()).thenReturn(employeePayrollList);
@@ -74,11 +82,15 @@ public class EmployeePayrollServiceTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(80000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
 
         EmployeePayroll employeePayroll = new EmployeePayroll();
         employeePayroll.setEmployeeId(1);
         employeePayroll.setEmployeeName("Alisha");
         employeePayroll.setEmployeeSalary(80000);
+        employeePayroll.setDepartments(List.of("It"));
+        employeePayroll.setGender("female");
         employeePayroll.setStart(LocalDateTime.now());
 
         when(modelMapper.map(employeeDto, EmployeePayroll.class)).thenReturn(employeePayroll);
@@ -94,11 +106,15 @@ public class EmployeePayrollServiceTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(80000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
 
         EmployeePayroll employeePayroll = new EmployeePayroll();
         employeePayroll.setEmployeeId(1);
         employeePayroll.setEmployeeName("Alisha");
         employeePayroll.setEmployeeSalary(80000);
+        employeePayroll.setDepartments(List.of("It"));
+        employeePayroll.setGender("female");
         employeePayroll.setStart(LocalDateTime.now());
 
         when(employeeRepo.findById(employeeId)).thenReturn(Optional.of(employeePayroll));
@@ -115,11 +131,15 @@ public class EmployeePayrollServiceTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(80000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
 
         EmployeePayroll employeePayroll = new EmployeePayroll();
         employeePayroll.setEmployeeId(1);
         employeePayroll.setEmployeeName("Alisha");
         employeePayroll.setEmployeeSalary(80000);
+        employeePayroll.setDepartments(List.of("It"));
+        employeePayroll.setGender("female");
         employeePayroll.setStart(LocalDateTime.now());
 
         when(employeeRepo.findById(employeeId)).thenReturn(Optional.of(employeePayroll));
@@ -138,6 +158,8 @@ public class EmployeePayrollServiceTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(80000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
         when(employeeRepo.findById(employeeId)).thenReturn(Optional.empty());
         assertThrows(ResourceNotFoundException.class, () -> employeePayrollService.updateEmployee(employeeId, employeeDto));
     }

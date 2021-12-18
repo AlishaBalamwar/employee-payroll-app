@@ -13,7 +13,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
 public class EmployeePayrollControllerTest {
 
@@ -29,10 +28,14 @@ public class EmployeePayrollControllerTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(50000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
         employeeDtoList.add(employeeDto);
         EmployeeDto employeeDto1 = new EmployeeDto();
         employeeDto1.setEmployeeName("Harry");
         employeeDto1.setEmployeeSalary(50000);
+        employeeDto1.setDepartments(List.of("It"));
+        employeeDto1.setGender("male");
         employeeDtoList.add(employeeDto1);
         when(employeePayrollService.getListOfAllEmployee()).thenReturn(employeeDtoList);
         List<EmployeeDto> actualResponse = employeePayrollController.getListOfAllEmployee();
@@ -48,6 +51,8 @@ public class EmployeePayrollControllerTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(50000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
         when(employeePayrollService.addEmployee(employeeDto)).thenReturn(successString);
         String actualResponseString = employeePayrollController.addEmployee(employeeDto);
         assertEquals(successString, actualResponseString);
@@ -60,6 +65,8 @@ public class EmployeePayrollControllerTest {
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
         employeeDto.setEmployeeSalary(50000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
         when(employeePayrollService.updateEmployee(employeeId, employeeDto)).thenReturn(successString);
         String actualResponseString = employeePayrollController.updateEmployee(employeeId,employeeDto);
         assertEquals(successString, actualResponseString);

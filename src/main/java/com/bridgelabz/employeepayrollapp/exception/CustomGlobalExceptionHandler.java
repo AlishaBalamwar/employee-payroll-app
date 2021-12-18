@@ -18,14 +18,24 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Purpose: to handle global exception
+ * Purpose: This class is created to handle custom global exception handler
  *
- * @author : Alisha Balamawar
- * @since : 2021-12-03
+ * @author: ALISHA BALAMWAR
+ * @since: 2021-12-13
  */
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Purpose : This method is created to handle the global exception which can occur while running the application
+     *
+     * @param ex:      This parameter is the reference for exception
+     * @param headers: This is reference for http header
+     * @param status:  This is reference http status
+     * @param request: This is reference for Web request
+     * @return: the new response entity which will holds the response DTO
+     * that consist the exception message and Http status
+     */
     @Valid
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -45,6 +55,13 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(body, headers, status);
     }
 
+    /**
+     * Purpose: This method is used to handle resource not found exception
+     *
+     * @param exception: this is reference for resource not found exception
+     * @param request: this is reference for web request
+     * @return: response entity
+     */
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity handleResourceNotFoundException(ResourceNotFoundException exception, WebRequest request) {
         ErrorDetailDto errorDetailDto = new ErrorDetailDto(new Date(), exception.getMessage(),
