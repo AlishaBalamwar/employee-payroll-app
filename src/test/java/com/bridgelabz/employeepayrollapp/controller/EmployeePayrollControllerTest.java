@@ -1,6 +1,7 @@
 package com.bridgelabz.employeepayrollapp.controller;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeeDto;
+import com.bridgelabz.employeepayrollapp.entity.ResponseEntity;
 import com.bridgelabz.employeepayrollapp.service.EmployeePayrollService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 public class EmployeePayrollControllerTest {
 
@@ -54,8 +56,9 @@ public class EmployeePayrollControllerTest {
         employeeDto.setDepartments(List.of("It"));
         employeeDto.setGender("female");
         when(employeePayrollService.addEmployee(employeeDto)).thenReturn(successString);
-        String actualResponseString = employeePayrollController.addEmployee(employeeDto);
-        assertEquals(successString, actualResponseString);
+        ResponseEntity responseEntity = employeePayrollController.addEmployee(employeeDto);
+        assertEquals(successString, responseEntity.getMessage());
+        assertEquals(employeeDto, responseEntity.getData());
     }
 
     @Test
@@ -68,16 +71,23 @@ public class EmployeePayrollControllerTest {
         employeeDto.setDepartments(List.of("It"));
         employeeDto.setGender("female");
         when(employeePayrollService.updateEmployee(employeeId, employeeDto)).thenReturn(successString);
-        String actualResponseString = employeePayrollController.updateEmployee(employeeId,employeeDto);
-        assertEquals(successString, actualResponseString);
+        ResponseEntity responseEntity = employeePayrollController.updateEmployee(employeeId, employeeDto);
+        assertEquals(successString, responseEntity.getMessage());
+        assertEquals(employeeDto, responseEntity.getData());
     }
 
     @Test
     void givenAEmployeeId_whenDeleteEmployeeDetailsCalled_shouldDeleteTheEmployee() {
         String successString = "Employee details deleted successfully";
         int employeeId = 1;
+        EmployeeDto employeeDto = new EmployeeDto();
+        employeeDto.setEmployeeName("Alisha");
+        employeeDto.setEmployeeSalary(50000);
+        employeeDto.setDepartments(List.of("It"));
+        employeeDto.setGender("female");
+        when(employeePayrollService.getEmployeeById(employeeId)).thenReturn(employeeDto);
         when(employeePayrollService.deleteEmployee(employeeId)).thenReturn(successString);
-        String actualResponseString = employeePayrollController.deleteEmployee(employeeId);
-        assertEquals(successString, actualResponseString);
+        ResponseEntity responseEntity = employeePayrollController.deleteEmployee(employeeId);
+        assertEquals(successString, responseEntity.getMessage());
     }
 }

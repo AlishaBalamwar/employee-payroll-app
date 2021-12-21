@@ -25,7 +25,7 @@ public class SwaggerConfiguration {
      * @return: the docket link which has the information about API
      */
     @Bean
-    public Docket postApi(){
+    public Docket postApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("Employee payroll")
                 .apiInfo(apiInfo())

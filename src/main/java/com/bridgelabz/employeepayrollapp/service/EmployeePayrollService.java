@@ -70,9 +70,9 @@ public class EmployeePayrollService {
      * Purpose: This method is created to delete employee from the repository
      *
      * @param id: This is reference which help to find entity and delete the employee details
-     * @return: status of employee details deleted or not
      * @throws ResourceNotFoundException: This exception is thrown if the desired given id is not found
-     * and cannot return the entity
+     *                                    and cannot return the entity
+     * @return: status of employee details deleted or not
      */
     public String deleteEmployee(int id) throws ResourceNotFoundException {
         EmployeePayroll employeePayroll = findEmployeeEntityById(id);
@@ -83,16 +83,27 @@ public class EmployeePayrollService {
     /**
      * Purpose: This method is created update employee details in the repository
      *
-     * @param id: This sis reference at which the entity needs to be updated
+     * @param id:          This sis reference at which the entity needs to be updated
      * @param employeeDto: This is reference for employee dto and holds the details that need to be updated
-     * @return: Status of employee details updated in the repository.
      * @throws ResourceNotFoundException: This exception is thrown if the desired given id is not found
-     * and cannot return the entity
+     *                                    and cannot return the entity
+     * @return: Status of employee details updated in the repository.
      */
     public String updateEmployee(int id, EmployeeDto employeeDto) throws ResourceNotFoundException {
         EmployeePayroll employeePayroll = findEmployeeEntityById(id);
         employeePayroll = employeeBuilder.buildEmployeeEntity(employeeDto, employeePayroll);
         employeeRepo.save(employeePayroll);
         return EMPLOYEE_UPDATED_SUCCESSFULLY;
+    }
+
+    /**
+     * Purpose: To find entry by id if it presents in database
+     *
+     * @param id: Database id.
+     * @return address: Data which has address details
+     */
+    public EmployeeDto getEmployeeById(int id){
+        EmployeePayroll employeePayroll = findEmployeeEntityById(id);
+        return modelMapper.map(employeePayroll, EmployeeDto.class);
     }
 }

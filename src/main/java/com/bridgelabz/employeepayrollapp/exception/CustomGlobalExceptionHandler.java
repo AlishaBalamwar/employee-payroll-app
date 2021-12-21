@@ -59,7 +59,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
      * Purpose: This method is used to handle resource not found exception
      *
      * @param exception: this is reference for resource not found exception
-     * @param request: this is reference for web request
+     * @param request:   this is reference for web request
      * @return: response entity
      */
     @ExceptionHandler(ResourceNotFoundException.class)

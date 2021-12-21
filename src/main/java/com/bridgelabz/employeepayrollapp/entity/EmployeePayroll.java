@@ -29,7 +29,7 @@ public class EmployeePayroll {
     @Column(name = "GENDER")
     private String gender;
     @ElementCollection
-    @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "D_id"))
     @Column(name = "DEPARTMENT")
     private List<String> departments;
     @Column(name = "EMPLOYEE_SALARY")

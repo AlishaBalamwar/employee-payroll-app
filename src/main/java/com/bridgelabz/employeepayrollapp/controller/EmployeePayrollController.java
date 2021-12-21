@@ -1,8 +1,10 @@
 package com.bridgelabz.employeepayrollapp.controller;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeeDto;
+import com.bridgelabz.employeepayrollapp.entity.ResponseEntity;
 import com.bridgelabz.employeepayrollapp.service.EmployeePayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -37,8 +39,23 @@ public class EmployeePayrollController {
      * @return: Status of employee added to the repository
      */
     @PostMapping(value = "/employee")
-    public String addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
-        return employeePayrollService.addEmployee(employeeDto);
+    public ResponseEntity addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
+       String successMessage = employeePayrollService.addEmployee(employeeDto);
+       return new ResponseEntity(successMessage, employeeDto, HttpStatus.OK);
+    }
+
+    /**
+     * Purpose: To get entry from database
+     *
+     * @param id: Database id which has to be shown
+     * @return: ResponseEntity: Having successMessage, data &
+     * success status response code indicates that the request has succeeded.
+     */
+    @GetMapping(value = "/employee/{id}")
+    public ResponseEntity getEmployeeById(@PathVariable(name = "id") int id){
+        EmployeeDto employeeDto = employeePayrollService.getEmployeeById(id);
+        String getAddressMessage = "The address for the given id is here: ";
+        return new ResponseEntity(getAddressMessage, employeeDto, HttpStatus.OK);
     }
 
     /**
@@ -48,8 +65,10 @@ public class EmployeePayrollController {
      * @return: Status of employee deleted from repository or not
      */
     @DeleteMapping("/employee/{id}")
-    public String deleteEmployee(@PathVariable int id) {
-        return employeePayrollService.deleteEmployee(id);
+    public ResponseEntity deleteEmployee(@PathVariable int id) {
+        EmployeeDto employeeDto = employeePayrollService.getEmployeeById(id);
+        String deleteMessage = employeePayrollService.deleteEmployee(id);
+        return new ResponseEntity(deleteMessage, employeeDto, HttpStatus.OK);
     }
 
     /**
@@ -60,8 +79,9 @@ public class EmployeePayrollController {
      * @return: Status of employee details updated in the repository
      */
     @PutMapping("/employee/{id}")
-    public String updateEmployee(@PathVariable(value = "id") int id,
+    public ResponseEntity updateEmployee(@PathVariable(value = "id") int id,
                                  @Valid @RequestBody EmployeeDto employeeDto) {
-        return employeePayrollService.updateEmployee(id, employeeDto);
+        String updateMessage = employeePayrollService.updateEmployee(id, employeeDto);
+        return new ResponseEntity(updateMessage, employeeDto, HttpStatus.OK);
     }
 }

@@ -77,7 +77,7 @@ public class EmployeePayrollServiceTest {
     }
 
     @Test
-    void givenEmployeePayrollDto_whenCalledAddEmployee_shouldReturnSuccessMessage(){
+    void givenEmployeePayrollDto_whenCalledAddEmployee_shouldReturnSuccessMessage() {
         String successMessage = "Employee added successfully";
         EmployeeDto employeeDto = new EmployeeDto();
         employeeDto.setEmployeeName("Alisha");
@@ -100,7 +100,7 @@ public class EmployeePayrollServiceTest {
     }
 
     @Test
-    void givenEmployeeIdPayrollDto_whenCalledDeleteEmployee_shouldReturnSuccessMessage(){
+    void givenEmployeeIdPayrollDto_whenCalledDeleteEmployee_shouldReturnSuccessMessage() {
         String successMessage = "Employee details deleted successfully";
         int employeeId = 1;
         EmployeeDto employeeDto = new EmployeeDto();
@@ -124,7 +124,7 @@ public class EmployeePayrollServiceTest {
     }
 
     @Test
-    void givenEmployeeIdPayrollDto_whenCalledUpdateEmployee_shouldReturnSuccessMessage(){
+    void givenEmployeeIdPayrollDto_whenCalledUpdateEmployee_shouldReturnSuccessMessage() {
         int employeeId = 1;
         ArgumentCaptor<EmployeePayroll> employeePayrollArgumentCaptor = ArgumentCaptor.forClass(EmployeePayroll.class);
         String successMessage = "Employee Details updated successfully";
@@ -163,5 +163,4 @@ public class EmployeePayrollServiceTest {
         when(employeeRepo.findById(employeeId)).thenReturn(Optional.empty());
         assertThrows(ResourceNotFoundException.class, () -> employeePayrollService.updateEmployee(employeeId, employeeDto));
     }
-
 }

@@ -77,5 +77,4 @@ public class EmployeePayrollControllerIntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk());
     }
-
 }

@@ -18,7 +18,7 @@ public class EmployeePayrollConfiguration {
      * @return: the model mapper
      */
     @Bean
-    public ModelMapper modelMapper(){
+    public ModelMapper modelMapper() {
         return new ModelMapper();
     }
 }
