@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -18,11 +19,17 @@ public class EmployeeDto {
     @NotNull
     @Size(min = 3, message = "Name should have atleast 3 characters")
     @Pattern(regexp = "[a-zA-Z]+[\\s]?[a-zA-Z]+$", message = "Name only contains alphabets")
-    private String employeeName;
+    private String name;
     @NotNull
-    private long employeeSalary;
+    private long salary;
+
+    @NotNull
+    private String profileUrl;
+    @NotNull
+    private String notes;
     @NotNull
     private String gender;
+    private LocalDateTime startDate;
     @NotNull
-    private List<String> departments;
+    private List<String> departmentValue;
 }

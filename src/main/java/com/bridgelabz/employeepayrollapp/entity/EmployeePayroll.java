@@ -1,6 +1,8 @@
 package com.bridgelabz.employeepayrollapp.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -17,24 +19,30 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "employeePayroll")
 public class EmployeePayroll {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "EMPLOYEE_ID")
-    private int employeeId;
-    @Column(name = "EMPLOYEE_NAME")
-    private String employeeName;
+    @Column(name = "ID")
+    private int id;
+    @Column(name = "NAME")
+    private String name;
+    @Column(name = "IMAGE")
+    private String profileUrl;
     @Column(name = "GENDER")
     private String gender;
     @ElementCollection
     @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "D_id"))
     @Column(name = "DEPARTMENT")
-    private List<String> departments;
-    @Column(name = "EMPLOYEE_SALARY")
-    private long employeeSalary;
+    private List<String> departmentValue;
+    @Column(name = "SALARY")
+    private long salary;
     @Column(name = "START_DATE")
     @CreationTimestamp
-    private LocalDateTime Start;
+    private LocalDateTime startDate;
+    @Column(name = "NOTES")
+    private String notes;
 }

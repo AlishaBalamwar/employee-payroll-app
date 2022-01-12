@@ -1,6 +1,7 @@
 package com.bridgelabz.employeepayrollapp.controller;
 
 import com.bridgelabz.employeepayrollapp.dto.EmployeeDto;
+import com.bridgelabz.employeepayrollapp.entity.EmployeePayroll;
 import com.bridgelabz.employeepayrollapp.entity.ResponseEntity;
 import com.bridgelabz.employeepayrollapp.service.EmployeePayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
  * @author: ALISHA BALAMWAR
  * @since:2021-12-13
  */
+@CrossOrigin("*")
 @RestController
 public class EmployeePayrollController {
 
@@ -28,7 +30,7 @@ public class EmployeePayrollController {
      * @return: List of all the employees from repository
      */
     @GetMapping(value = "/employee")
-    public List<EmployeeDto> getListOfAllEmployee() {
+    public List<EmployeePayroll> getListOfAllEmployee() {
         return employeePayrollService.getListOfAllEmployee();
     }
 

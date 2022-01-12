@@ -36,11 +36,11 @@ public class EmployeePayrollService {
      *
      * @return: The list of employee from the repository
      */
-    public List<EmployeeDto> getListOfAllEmployee() {
+    public List<EmployeePayroll> getListOfAllEmployee() {
         return employeeRepo
                 .findAll()
                 .stream()
-                .map(employeePayroll -> modelMapper.map(employeePayroll, EmployeeDto.class))
+                .map(employeeDto -> modelMapper.map(employeeDto, EmployeePayroll.class))
                 .collect(Collectors.toList());
     }
 
